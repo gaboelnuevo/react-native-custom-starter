@@ -5,7 +5,8 @@ import { createReducer } from 'reduxsauce'
 export const INITIAL_STATE = Immutable({
   username: null,
   errorCode: null,
-  attempting: false
+  attempting: false,
+  isLogged: false,
 })
 
 // login attempts
@@ -14,7 +15,7 @@ const attempt = (state, action) =>
 
 // successful logins
 const success = (state, action) =>
-  state.merge({ attempting: false, errorCode: null, username: action.username })
+  state.merge({ attempting: false, errorCode: null, username: action.username, isLogged: true })
 
 // login failure
 const failure = (state, action) =>
@@ -22,7 +23,7 @@ const failure = (state, action) =>
 
 // logout
 const logout = (state, action) =>
-  state.merge({ username: null })
+  state.merge({ username: null, isLogged: false })
 
 // map our types to our handlers
 const ACTION_HANDLERS = {

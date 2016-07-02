@@ -84,10 +84,12 @@ export default class RNBase extends React.Component {
   }
 
   navigatorWillFocus (route){
-    if(route.hideNavbar===true){
-      this.setState({hideNavbar: true});
-    }else{
-      this.setState({hideNavbar: false});
+    if(route){
+      if(route.hideNavbar===true){
+        this.setState({hideNavbar: true});
+      }else{
+        this.setState({hideNavbar: false});
+      }
     }
   }
 

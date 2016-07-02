@@ -30,6 +30,9 @@ const NavigationStyle = StyleSheet.create({
     fontFamily: Fonts.bold,
     padding: Metrics.baseMargin
   },
+  navButtonRight: {
+    margin: Metrics.baseMargin
+  },
   navButtonLeft: {
     margin: Metrics.baseMargin
   },

@@ -15,10 +15,12 @@ export default class PresentationScreen extends React.Component {
     super(props)
     this.state = {}
     this.handlePressLogin = this.handlePressLogin.bind(this)
+    this.props.isLogged = false;
   }
 
   static propTypes = {
-    navigator: PropTypes.object.isRequired
+    navigator: PropTypes.object.isRequired,
+    isLogged: PropTypes.bool
   }
 
   componentWillMount () {
@@ -27,6 +29,9 @@ export default class PresentationScreen extends React.Component {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+
+  }
 
   // fires when the user presses the login button
   handlePressLogin () {
@@ -36,6 +41,9 @@ export default class PresentationScreen extends React.Component {
   }
 
   renderLoginButton () {
+    if(this.props.isLogged){
+      return null
+    }
     return (
       <View style={styles.loginBox}>
         <TouchableOpacity onPress={this.handlePressLogin}>
@@ -46,6 +54,7 @@ export default class PresentationScreen extends React.Component {
       </View>
     )
   }
+
 
   render () {
     return (
@@ -70,6 +79,7 @@ export default class PresentationScreen extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    isLogged: state.login.isLogged
   }
 }
 

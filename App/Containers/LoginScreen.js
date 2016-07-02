@@ -14,6 +14,8 @@ import Styles from './Styles/LoginScreenStyle'
 import Actions from '../Actions/Creators'
 import {Images, Metrics} from '../Themes'
 
+import Routes from '../Navigation/Routes'
+
 // I18n
 import I18n from '../I18n/I18n.js'
 
@@ -37,9 +39,16 @@ class LoginScreen extends React.Component {
   }
 
   componentWillReceiveProps (newProps) {
-    this.forceUpdate()
-    if (this.isAttempting && !newProps.attempting) {
-      this.props.navigator.pop()
+    this.forceUpdate();
+    const { navigator } = this.props;
+    const route = Routes.PresentationScreen;
+
+    if(newProps.isLogged){
+      navigator.immediatelyResetRouteStack([route]);
+    }else{
+      if (this.isAttempting && !newProps.attempting) {
+        navigator.pop();
+      }
     }
   }
 
@@ -162,12 +171,14 @@ class LoginScreen extends React.Component {
 LoginScreen.propTypes = {
   dispatch: PropTypes.func,
   navigator: PropTypes.object,
-  attempting: PropTypes.bool
+  attempting: PropTypes.bool,
+  isLogged: PropTypes.bool
 }
 
 const mapStateToProps = (state) => {
   return {
-    attempting: state.login.attempting
+    attempting: state.login.attempting,
+    isLogged: state.login.isLogged
   }
 }
 
