@@ -10,7 +10,6 @@ export default StyleSheet.create({
     backgroundColor: Colors.transparent,
   },
   menuHeader: {
-    flex:1,
     backgroundColor: Colors.silver,
     borderColor: Colors.white,
     flexDirection:'row',
@@ -19,7 +18,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
   },
   avatar: {
-    marginRight: 10
+    marginRight: 15,
   },
   row: {
     backgroundColor: Colors.transparent,

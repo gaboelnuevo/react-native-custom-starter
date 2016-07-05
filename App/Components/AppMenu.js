@@ -14,7 +14,8 @@ export default class AppMenu extends React.Component {
 
   static propTypes = {
     navigator: React.PropTypes.object,
-    username: React.PropTypes.string
+    username: React.PropTypes.string,
+    email: React.PropTypes.string
   }
 
   constructor(props){
@@ -46,15 +47,21 @@ export default class AppMenu extends React.Component {
     )
   }
 
+  renderHeader(){
+    return (
+      <View style={styles.menuHeader}>
+        <View style={styles.avatar}>
+          <Gravatar emailAddress={this.props.email} size={120} />
+        </View>
+        <Text numberOfLines={1}>{this.props.username}</Text>
+      </View>
+    )
+  }
+
   render () {
     return (
       <View>
-        <View style={styles.menuHeader}>
-          <View style={styles.avatar}>
-            <Gravatar emailAddress="foo@bar.com" size={100} mask="rounded" />
-          </View>
-          <Text>{this.props.username}</Text>
-        </View>
+        {this.renderHeader()}
         <ScrollView style={styles.container}>
           <ListView dataSource={this.state.dataSource}  renderRow={this.renderRow} />
         </ScrollView>
@@ -67,7 +74,8 @@ export default class AppMenu extends React.Component {
 const mapStateToProps = (state) => {
   return {
     isLogged: state.login.isLogged,
-    username: state.login.username || ''
+    username: state.login.username || '',
+    email: state.login.email || ''
   }
 }
 
