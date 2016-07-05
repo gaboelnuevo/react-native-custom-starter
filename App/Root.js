@@ -7,6 +7,7 @@ import Actions from './Actions/Creators'
 import Drawer from 'react-native-drawer'
 import PushNotification from 'react-native-push-notification'
 import DebugSettings from './Config/DebugSettings'
+import AppMenu from './Components/AppMenu'
 
 // Styles
 import styles from './Containers/Styles/RootStyle'
@@ -68,10 +69,8 @@ export default class RNBase extends React.Component {
 
   renderDrawerContent () {
     return (
-      <View style={{marginTop: 30, padding: 10}}>
-        <Text>
-          Drawer Content Goes Here!
-        </Text>
+      <View>
+        <AppMenu></AppMenu>
       </View>
     )
   }
