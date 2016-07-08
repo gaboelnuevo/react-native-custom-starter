@@ -15,7 +15,7 @@ export default StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
     paddingVertical: 20,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   avatar: {
     marginRight: 15,

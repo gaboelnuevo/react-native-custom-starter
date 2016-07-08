@@ -29,7 +29,7 @@ export default class AppMenu extends React.Component {
   }
 
   tapRow(rowData){
-
+    this.props.navigator.drawer.toggle();
   }
 
   renderRow(rowData){

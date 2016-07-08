@@ -70,7 +70,7 @@ export default class RNBase extends React.Component {
   renderDrawerContent () {
     return (
       <View>
-        <AppMenu></AppMenu>
+        <AppMenu navigator={this.navigator}></AppMenu>
       </View>
     )
   }
