@@ -3,7 +3,7 @@ import apisauce from 'apisauce'
 import Reactotron from 'reactotron'
 
 // our "constructor"
-const create = (baseURL = 'http://openweathermap.org/data/2.1') => {
+const create = (baseURL = 'http://192.168.1.111:8080/api') => {
   // ------
   // STEP 1
   // ------
@@ -13,10 +13,7 @@ const create = (baseURL = 'http://openweathermap.org/data/2.1') => {
   const api = apisauce.create({
     // base URL is read from the "constructor"
     baseURL,
-    // here are some default headers
-    headers: {
-      'Cache-Control': 'no-cache'
-    },
+
     // 10 second timeout...
     // ...however, it doesn't work on React Native because the `timeout`
     // property of `XMLHttpRequest` hasn't been implemented.  It is
@@ -30,6 +27,8 @@ const create = (baseURL = 'http://openweathermap.org/data/2.1') => {
     // Monitors are called passively after every request.
     Reactotron.apiLog(response)
   })
+
+  const setToken = (token) => api.setHeader('Authorization', token)
 
   // ------
   // STEP 2
@@ -45,7 +44,8 @@ const create = (baseURL = 'http://openweathermap.org/data/2.1') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getCity = (city) => api.get('/find/name', {q: city})
+
+  const userLogin = (credentials) => api.post('/chatusers/login', credentials)
 
   // ------
   // STEP 3
@@ -61,9 +61,11 @@ const create = (baseURL = 'http://openweathermap.org/data/2.1') => {
   //
   return {
     // a list of the API functions from step 2
-    getCity,
+    userLogin,
+
     // additional utilities
-    addMonitor
+    addMonitor,
+    setToken
   }
 }
 
