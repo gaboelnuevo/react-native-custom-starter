@@ -45,7 +45,7 @@ const create = (baseURL = 'http://192.168.1.111:8080/api') => {
   // way at this level.
   //
 
-  const userLogin = (credentials) => api.post('/chatusers/login', credentials)
+  const userLogin = (credentials) => api.post('/users/login', credentials)
 
   // ------
   // STEP 3
